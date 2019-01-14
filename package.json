@@ -1,0 +1,43 @@
+{
+  "name": "shamosHoey",
+  "version": "0.0.1",
+  "description": "A module to check if a polygon self-intersects",
+  "main": "dist/shamosHoey.js",
+  "module": "src/index.js",
+  "unpkg": "dist/shamosHoey.min.js",
+  "jsdelivr": "dist/shamosHoey.min.js",
+  "scripts": {
+    "bench": "npm run build && node test/benchmark.js",
+    "build": "rollup -c",
+    "test": "ava --verbose",
+    "test:coverage": "nyc ava"
+  },
+  "ava": {
+    "files": [
+      "test/*.spec.js"
+    ],
+    "require": [
+      "esm"
+    ]
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "splaytree": "^2.0.3",
+    "tinyqueue": "^2.0.0"
+  },
+  "devDependencies": {
+    "ava": "^1.0.1",
+    "benchmark": "^2.1.4",
+    "eslint": "^5.12.0",
+    "eslint-config-mourner": "^3.0.0",
+    "esm": "^3.0.84",
+    "geojson-polygon-self-intersections": "^1.2.0",
+    "load-json-file": "^5.1.0",
+    "nyc": "^13.1.0",
+    "polygon": "^1.0.2",
+    "rollup": "^1.1.0",
+    "rollup-plugin-node-resolve": "^4.0.0",
+    "rollup-plugin-terser": "^4.0.2"
+  }
+}
