@@ -10,11 +10,11 @@ npm install shamos-hoey
 Valid inputs: Geojson polygon features or geometries
 
 ````js
-    const shamosHoey = require('shamos-hoey')
+    const isSimple = require('shamos-hoey')
 
     const box = {type: 'Polygon', coordinates: [[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]]}
-    shamosHoey(box)
-    // false
+    isSimple(box)
+    // true
 ````
 
 ## To do
