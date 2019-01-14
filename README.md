@@ -1,16 +1,16 @@
 # shamos-hoey
-A small module for checking for self intersections of geomtries using the Shamos-Hoey algorithm.
+A small and fast module for checking for self intersections of polygons using the Shamos-Hoey algorithm.
 
 ## Install
 ````
-npm install shamosHoey
+npm install shamos-hoey
 ````
 
 ## Documentation
 Valid inputs: Geojson polygon features or geometries
 
 ````js
-    const shamosHoey = require('shamosHoey')
+    const shamosHoey = require('shamos-hoey')
 
     const box = {type: 'Polygon', coordinates: [[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]]}
     shamosHoey(box)
