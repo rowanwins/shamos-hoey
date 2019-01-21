@@ -7,7 +7,7 @@ npm install shamos-hoey
 ````
 
 ## Documentation
-Valid inputs: Geojson polygon features or geometries
+Valid inputs: Geojson features or geometries inc `Polygon`, `LineString`, `MultiPolygon` & `MultiLineString`.
 
 ````js
     const isSimple = require('shamos-hoey')
@@ -16,9 +16,6 @@ Valid inputs: Geojson polygon features or geometries
     isSimple(box)
     // true
 ````
-
-## To do
-Fix up handling of linestrings
 
 ## Further Reading
 [Geom algorithms](http://geomalgorithms.com/a09-_intersect-3.html#Shamos-Hoey-Algorithm)

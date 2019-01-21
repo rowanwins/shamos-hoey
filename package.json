@@ -1,6 +1,6 @@
 {
   "name": "shamos-hoey",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A module to check if a polygon self-intersects",
   "main": "dist/shamosHoey.js",
   "module": "src/index.js",

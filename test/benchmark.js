@@ -18,7 +18,7 @@ const options = {
     onError (event) { console.log(event.target.error) },
     onCycle (event) { console.log(String(event.target)) },
     onComplete () {
-        console.log('- Fastest is ' + this.filter('fastest').map('name') + '\n')
+        console.log(`- Fastest is ${this.filter('fastest').map('name')}`)
     }
 }
 

@@ -5,8 +5,8 @@
         "ISO_A3": "CHE"
       },
       "geometry": {
-        "type": "Polygon",
-        "coordinates": [
+        "type": "MultiPolygon",
+        "coordinates": [[
           [
             [
               8.61743737800009,
@@ -3009,6 +3009,6 @@
               47.75731862400008
             ]
           ]
-        ]
+        ]]
       }
     }
