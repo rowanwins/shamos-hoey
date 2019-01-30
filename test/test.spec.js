@@ -15,6 +15,8 @@ const multilineKinked = loadJsonFile.sync(path.join(__dirname, 'fixtures', 'mult
 
 const multiPoly = loadJsonFile.sync(path.join(__dirname, 'fixtures', 'diamondMulti.geojson'))
 
+const regression1 = loadJsonFile.sync(path.join(__dirname, 'fixtures', 'regression1.geojson'))
+
 
 test('Polygon does not self-intersect', function (t) {
     t.is(isSimple(switzerland), true)
@@ -43,4 +45,8 @@ test('MultiLine does self-intersect', function (t) {
 
 test('MultiPoly does not self-intersect', function (t) {
     t.is(isSimple(multiPoly), true)
+})
+
+test('Regression test 1', function (t) {
+    t.is(isSimple(regression1), false)
 })
