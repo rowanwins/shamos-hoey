@@ -1,5 +1,6 @@
 import resolve from 'rollup-plugin-node-resolve'
 import {terser} from 'rollup-plugin-terser'
+import strip from 'rollup-plugin-strip';
 
 const output = (file, plugins) => ({
     input: './src/main.js',
@@ -13,6 +14,18 @@ const output = (file, plugins) => ({
 })
 
 export default [
-    output('./dist/shamosHoey.js', [resolve()]),
-    output('./dist/shamosHoey.min.js', [resolve(), terser()])
+    output('./dist/shamosHoey.js', [
+        strip({
+            functions: ['debugEventAndSegment', 'debugEventAndSegments']
+        }),
+        resolve()
+    ]),
+
+    output('./dist/shamosHoey.min.js', [
+        strip({
+            functions: ['debugEventAndSegment', 'debugEventAndSegments']
+        }),
+        resolve(),
+        terser()
+    ])
 ]
