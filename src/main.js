@@ -28,7 +28,7 @@ export default function isSimple (geojson) {
             if (sweepLine.testIntersect(currentSegment, currentSegment.segmentBelow)) return false
         } else {
 
-            if (process.env.NODE_ENV === 'development') debugEventAndSegment(event, event.segment)
+            debugEventAndSegment(event, event.segment)
 
             if (sweepLine.testIntersect(event.segment.segmentAbove, event.segment.segmentBelow)) return false
             sweepLine.removeSegmentFromSweepline(event.segment)

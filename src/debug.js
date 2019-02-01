@@ -1,5 +1,5 @@
 export function debugEventAndSegments (event, sweepline) {
-
+    if (process.env.NODE_ENV !== 'development') return
     const map = window.map
     const eLayer = L.circleMarker([event.y, event.x]).addTo(map)
 
@@ -24,7 +24,7 @@ export function debugEventAndSegments (event, sweepline) {
 }
 
 export function debugEventAndSegment (event, segment) {
-
+    if (process.env.NODE_ENV !== 'development') return
     const map = window.map
     const eLayer = L.circleMarker([event.y, event.x]).addTo(map)
 

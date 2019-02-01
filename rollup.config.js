@@ -1,6 +1,6 @@
 import resolve from 'rollup-plugin-node-resolve'
 import {terser} from 'rollup-plugin-terser'
-import strip from 'rollup-plugin-strip';
+import strip from 'rollup-plugin-strip'
 
 const output = (file, plugins) => ({
     input: './src/main.js',
