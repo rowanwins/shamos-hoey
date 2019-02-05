@@ -22,9 +22,10 @@ const options = {
     }
 }
 
-// ShamosHoey - No Intersects x 3,998,000 ops/sec ±42.74% (45 runs sampled)
-// GPSI - No Intersects x 949,232 ops/sec ±31.16% (68 runs sampled)
-// Polygon - No Intersects x 28.90 ops/sec ±43.69% (50 runs sampled)
+// ShamosHoey - No Intersects x 3,413 ops/sec ±2.69% (91 runs sampled)
+// GPSI - No Intersects x 36.33 ops/sec ±1.49% (63 runs sampled)
+// Polygon - No Intersects x 51.63 ops/sec ±0.72% (67 runs sampled)
+// - Fastest is ShamosHoey - No Intersects
 const suite = new Benchmark.Suite('No intersections', options)
 suite
     .add('ShamosHoey - No Intersects', function () {
@@ -38,8 +39,9 @@ suite
     })
     .run()
 
-// ShamosHoey - Has Intersects x 321,547 ops/sec ±132.69% (6 runs sampled)
-// GPSI - Has Intersects x 8,380 ops/sec ±90.29% (5 runs sampled)
+// ShamosHoey - Has Intersects x 4,542 ops/sec ±1.14% (95 runs sampled)
+// GPSI - Has Intersects x 36.60 ops/sec ±0.45% (64 runs sampled)
+// - Fastest is ShamosHoey - Has Intersects
 const suite2 = new Benchmark.Suite('Has intersections', options)
 suite2
     .add('ShamosHoey - Has Intersects', function () {
