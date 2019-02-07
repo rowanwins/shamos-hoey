@@ -5,7 +5,11 @@ import {fillEventQueue} from './fillQueue'
 
 import {debugEventAndSegments, debugEventAndSegment} from './debug'
 
-export default function isSimple (geojson) {
+export default function isSimple (geojson, options) {
+    if (options == null) options = {}
+    if (options.booleanOnly == null) options.booleanOnly = true
+    const intersectingPoints = []
+
     const eventQueue = new EventQueue()
 
     fillEventQueue(geojson, eventQueue)
@@ -24,15 +28,29 @@ export default function isSimple (geojson) {
 
             debugEventAndSegment(event, currentSegment)
 
-            if (sweepLine.testIntersect(currentSegment, currentSegment.segmentAbove)) return false
-            if (sweepLine.testIntersect(currentSegment, currentSegment.segmentBelow)) return false
+            const ipWithSegAbove = sweepLine.testIntersect(currentSegment, currentSegment.segmentAbove)
+            if (ipWithSegAbove !== false) {
+                if (options.booleanOnly) return false
+                intersectingPoints.push(ipWithSegAbove)
+            }
+
+            const ipWithSegBelow = sweepLine.testIntersect(currentSegment, currentSegment.segmentBelow)
+            if (ipWithSegBelow) {
+                if (options.booleanOnly) return false
+                intersectingPoints.push(ipWithSegBelow)
+            }
         } else {
 
             debugEventAndSegment(event, event.segment)
 
-            if (sweepLine.testIntersect(event.segment.segmentAbove, event.segment.segmentBelow)) return false
+            const ipWithSegBelow = sweepLine.testIntersect(currentSegment, currentSegment.segmentBelow)
+            if (ipWithSegBelow) {
+                if (options.booleanOnly) return false
+                intersectingPoints.push(ipWithSegBelow)
+            }
             sweepLine.removeSegmentFromSweepline(event.segment)
         }
     }
-    return true;
+    if (options.booleanOnly) return true
+    return intersectingPoints
 }

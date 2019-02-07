@@ -39,13 +39,18 @@ suite
     })
     .run()
 
-// ShamosHoey - Has Intersects x 4,542 ops/sec ±1.14% (95 runs sampled)
-// GPSI - Has Intersects x 36.60 ops/sec ±0.45% (64 runs sampled)
+// Has intersections
+// ShamosHoey - Has Intersects x 4,571 ops/sec ±1.28% (92 runs sampled)
+// ShamosHoey - Get Intersects x 3,603 ops/sec ±0.39% (98 runs sampled)
+// GPSI - Has Intersects x 37.83 ops/sec ±0.54% (66 runs sampled)
 // - Fastest is ShamosHoey - Has Intersects
 const suite2 = new Benchmark.Suite('Has intersections', options)
 suite2
     .add('ShamosHoey - Has Intersects', function () {
         shamosHoey(switzerlandKinked)
+    })
+    .add('ShamosHoey - Get Intersects', function () {
+        shamosHoey(switzerlandKinked, {booleanOnly: false})
     })
     .add('GPSI - Has Intersects', function () {
         gpsi(switzerlandKinked)
