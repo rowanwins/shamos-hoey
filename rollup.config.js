@@ -6,8 +6,8 @@ const output = (file, plugins) => ({
     input: './src/main.js',
     output: {
         name: 'shamosHoey',
-        format: 'umd',
         file,
+        format: 'umd',
         exports: 'default'
     },
     plugins
@@ -20,7 +20,6 @@ export default [
         }),
         resolve()
     ]),
-
     output('./dist/shamosHoey.min.js', [
         strip({
             functions: ['debugEventAndSegment', 'debugEventAndSegments']
