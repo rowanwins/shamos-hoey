@@ -43,7 +43,7 @@ export default function isSimple (geojson, options) {
 
             debugEventAndSegment(event, event.segment)
 
-            const ipWithSegBelow = sweepLine.testIntersect(currentSegment, currentSegment.segmentBelow)
+            const ipWithSegBelow = sweepLine.testIntersect(event.segment.segmentAbove, event.segment.segmentBelow)
             if (ipWithSegBelow) {
                 if (options.booleanOnly) return false
                 intersectingPoints.push(ipWithSegBelow)

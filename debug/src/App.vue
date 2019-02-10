@@ -17,7 +17,7 @@ L.Icon.Default.mergeOptions({
   shadowUrl: markerShadow
 })
 
-const trouble = require('../../test/fixtures/regression1.geojson')
+const trouble = require('../../test/fixtures/notSimple/regression2.geojson')
 import isSimple from '../../src/main'
 
 export default {
@@ -25,14 +25,15 @@ export default {
   mounted: function () {
     let map = window.map = L.map('app', {
       center: [0, 0],
-      zoom: 1
+      zoom: 1,
+      crs: L.CRS.Simple
     })
 
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
-      subdomains: 'abcd',
-      maxZoom: 19
-    }).addTo(map)
+    // L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    //   attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+    //   subdomains: 'abcd',
+    //   maxZoom: 19
+    // }).addTo(map)
     const layer = L.geoJSON(trouble).addTo(map)
     map.fitBounds(layer.getBounds())
     console.log(isSimple(trouble))

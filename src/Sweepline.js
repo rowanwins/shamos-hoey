@@ -24,13 +24,13 @@ export default class SweepLine {
     }
 
     findSegment (seg) {
-        const node = this.tree.findStatic(seg)
+        const node = this.tree.find(seg)
         if (node === null) return null
         return node.key
     }
 
     removeSegmentFromSweepline (seg) {
-        const node = this.tree.findStatic(seg)
+        const node = this.tree.find(seg)
         if (node === null) return
         const nextNode = this.tree.next(node)
         if (nextNode !== null) {
