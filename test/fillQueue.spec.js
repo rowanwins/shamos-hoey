@@ -27,3 +27,10 @@ test('Event queue - input is not mutated', function (t) {
     fillEventQueue(diamond, eq)
     t.deepEqual(diamond, clonedDiamond)
 })
+
+test('Event queue - length is correct', function (t) {
+    const eq = new EventQueue()
+
+    fillEventQueue(diamond, eq)
+    t.is(eq.length, 8)
+})

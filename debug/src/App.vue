@@ -8,6 +8,8 @@ import 'leaflet/dist/leaflet.css'
 import markerIcon from 'leaflet/dist/images/marker-icon.png'
 import marker2x from 'leaflet/dist/images/marker-icon-2x.png'
 import markerShadow from 'leaflet/dist/images/marker-shadow.png'
+import './coords';
+import isSimple from '../../src/main'
 
 // Hack to get the markers into Vue correctly
 delete L.Icon.Default.prototype._getIconUrl
@@ -17,28 +19,33 @@ L.Icon.Default.mergeOptions({
   shadowUrl: markerShadow
 })
 
-const trouble = require('../../test/fixtures/notSimple/regression2.geojson')
-import isSimple from '../../src/main'
+const trouble = require('../../test/fixtures/poly.geojson')
 
 export default {
   name: 'App',
   mounted: function () {
+    
+    const layer = L.geoJSON(trouble)
     let map = window.map = L.map('app', {
-      center: [0, 0],
-      zoom: 1,
       crs: L.CRS.Simple
-    })
+    }).fitBounds(layer.getBounds())  
+
+    layer.addTo(map)
+
+    map.addControl(new L.Coordinates());
 
     // L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
     //   attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
     //   subdomains: 'abcd',
     //   maxZoom: 19
     // }).addTo(map)
-    const layer = L.geoJSON(trouble).addTo(map)
-    map.fitBounds(layer.getBounds())
+
+
     console.log(isSimple(trouble))
+
   }
 }
+
 </script>
 
 <style>

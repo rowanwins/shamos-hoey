@@ -33,11 +33,12 @@ export default class SweepLine {
         const node = this.tree.find(seg)
         if (node === null) return
         const nextNode = this.tree.next(node)
+        const prevNode = this.tree.prev(node)
+
         if (nextNode !== null) {
             const nextSeg = nextNode.key
             nextSeg.segmentBelow = seg.segmentBelow
         }
-        const prevNode = this.tree.prev(node)
         if (prevNode !== null) {
             const prevSeg = prevNode.key
             prevSeg.segmentAbove = seg.segmentAbove

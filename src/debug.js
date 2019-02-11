@@ -26,9 +26,17 @@ export function debugEventAndSegments (event, sweepline) {
 export function debugEventAndSegment (event, segment) {
     if (process.env.NODE_ENV !== 'development') return
     const map = window.map
+
     const eLayer = L.circleMarker([event.y, event.x]).addTo(map)
 
     const lines = L.layerGroup([]).addTo(map)
+
+    const b = map.getBounds()
+    L.polyline([
+        [b.getNorth(), event.x],
+        [b.getSouth(), event.x]
+    ], {color: 'grey', weight: 1}).addTo(lines);
+
 
     L.polyline([
         [segment.leftSweepEvent.y, segment.leftSweepEvent.x],
@@ -49,7 +57,6 @@ export function debugEventAndSegment (event, segment) {
         ], {color: 'purple'}).addTo(lines)
     }
 
-    // const polyline = L.polyline([[event.y, event.x], [event.otherEvent.y, event.otherEvent.x]], {color: 'red'}).addTo(map)
 
     // debugger
 
