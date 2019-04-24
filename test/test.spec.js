@@ -43,3 +43,10 @@ test('complex fixtures return length', (t) => {
         t.true(kinks.length > 0, `[found kinks] ${name}`)
     });
 })
+
+test('input data is not modified', (t) => {
+    const geojson = load.sync(path.join(__dirname, 'fixtures', 'notSimple', 'switzerlandKinked.geojson'));
+    const clonedData = JSON.parse(JSON.stringify(geojson))
+    isSimple(geojson, {booleanOnly: false})
+    t.deepEqual(geojson, clonedData)
+})
