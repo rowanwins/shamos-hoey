@@ -10,6 +10,7 @@ npm install shamos-hoey
 Valid inputs: Geojson features or geometries inc `Polygon`, `LineString`, `MultiPolygon` & `MultiLineString`.
 
 Returns `true` if the polygon is simple (doesn't have self-intersections).
+
 Returns `false` if the polygon is complex (has self-intersections).
 
 ````js
@@ -39,4 +40,5 @@ Detecting an intersection in a polygon with roughly 700 vertices. Note that the 
 
 ## Further Reading
 [Original Paper](https://github.com/rowanwins/shamos-hoey/blob/master/ShamosHoey.pdf)
+
 [Article on Geom algorithms website](http://geomalgorithms.com/a09-_intersect-3.html#Shamos-Hoey-Algorithm)
