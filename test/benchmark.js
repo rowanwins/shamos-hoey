@@ -3,6 +3,7 @@ const Benchmark = require('benchmark')
 const shamosHoey = require('../dist/shamosHoey.js')
 const loadJsonFile = require('load-json-file')
 const gpsi = require('geojson-polygon-self-intersections')
+const findIntersections = require('sweepline-intersections')
 const Polygon = require('polygon')
 
 const switzerland = loadJsonFile.sync(path.join(__dirname, 'fixtures', 'simple', 'switzerland.geojson'))
@@ -23,37 +24,41 @@ const options = {
 }
 
 // No intersections
-// ShamosHoey - No Intersects x 3,043 ops/sec ±2.03% (95 runs sampled)
-// GPSI - No Intersects x 37.18 ops/sec ±0.39% (64 runs sampled)
-// Polygon - No Intersects x 54.93 ops/sec ±1.23% (57 runs sampled)
-// - Fastest is ShamosHoey - No Intersects
+// ShamosHoey x 3,099 ops/sec ±2.68% (92 runs sampled)
+// SweeplineIntersections x 2,187 ops/sec ±1.21% (91 runs sampled)
+// GPSI x 38.61 ops/sec ±1.09% (52 runs sampled)
+// Polygon x 56.93 ops/sec ±1.67% (59 runs sampled)
+// - Fastest is ShamosHoey
 const suite = new Benchmark.Suite('No intersections', options)
 suite
-    .add('ShamosHoey - No Intersects', function () {
+    .add('ShamosHoey', function () {
         shamosHoey(switzerland)
     })
-    .add('GPSI - No Intersects', function () {
+    .add('SweeplineIntersections', function () {
+        findIntersections(switzerland)
+    })
+    .add('GPSI', function () {
         gpsi(switzerland)
     })
-    .add('Polygon - No Intersects', function () {
+    .add('Polygon', function () {
         p.selfIntersections()
     })
     .run()
 
 // Has intersections
-// ShamosHoey - Has Intersects x 4,089 ops/sec ±0.60% (95 runs sampled)
-// ShamosHoey - Get Intersects x 3,106 ops/sec ±1.27% (93 runs sampled)
-// GPSI - Has Intersects x 36.85 ops/sec ±1.06% (64 runs sampled)
-// - Fastest is ShamosHoey - Has Intersects
+// ShamosHoey x 4,132 ops/sec ±0.60% (95 runs sampled)
+// SweeplineIntersections x 2,124 ops/sec ±0.70% (92 runs sampled)
+// GPSI x 36.85 ops/sec ±1.06% (64 runs sampled)
+// - Fastest is ShamosHoey
 const suite2 = new Benchmark.Suite('Has intersections', options)
 suite2
-    .add('ShamosHoey - Has Intersects', function () {
+    .add('ShamosHoey', function () {
         shamosHoey(switzerlandKinked)
     })
-    .add('ShamosHoey - Get Intersects', function () {
-        shamosHoey(switzerlandKinked, {booleanOnly: false})
+    .add('SweeplineIntersections', function () {
+        findIntersections(switzerlandKinked)
     })
-    .add('GPSI - Has Intersects', function () {
+    .add('GPSI', function () {
         gpsi(switzerlandKinked)
     })
     .run()

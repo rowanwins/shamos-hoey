@@ -76,9 +76,7 @@ export default class SweepLine {
         const uB = numeB / denom
 
         if (uA >= 0 && uA <= 1 && uB >= 0 && uB <= 1) {
-            const x = x1 + (uA * (x2 - x1))
-            const y = y1 + (uA * (y2 - y1))
-            return {x, y}
+            return true
         }
         return false
     }

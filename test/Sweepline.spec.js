@@ -101,7 +101,7 @@ test('Sweepline can testIntersects', function (t) {
     e6.isLeftEndpoint = false;
 
     const crossLine = sl.addSegment(e5)
-    t.deepEqual(sl.testIntersect(midLine, crossLine), {x: -0.5, y: 0})
+    t.is(sl.testIntersect(midLine, crossLine), true)
     t.is(sl.testIntersect(topLine, crossLine), false)
 
     const e7 = new Event([0, 0])

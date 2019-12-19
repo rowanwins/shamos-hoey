@@ -1,9 +1,9 @@
 {
   "name": "shamos-hoey",
-  "version": "0.0.9",
+  "version": "1.0.0",
   "description": "A module to check if a polygon self-intersects",
   "main": "dist/shamosHoey.js",
-  "module": "src/main.js",
+  "module": "dist/shamosHoey.esm.js",
   "unpkg": "dist/shamosHoey.min.js",
   "jsdelivr": "dist/shamosHoey.min.js",
   "scripts": {
@@ -22,7 +22,9 @@
       "esm"
     ]
   },
-  "author": "",
+  "author": {
+    "name": "Rowan Winsemius"
+  },
   "license": "MIT",
   "dependencies": {
     "splaytree": "^2.0.3",
@@ -49,11 +51,24 @@
     "rollup-plugin-strip": "^1.2.1",
     "rollup-plugin-terser": "^4.0.2",
     "serve": "^10.1.1",
+    "sweepline-intersections": "^0.0.1",
     "vue": "^2.5.22",
     "vue-loader": "^15.6.2",
     "vue-template-compiler": "^2.5.22",
     "webpack": "^4.29.0",
     "webpack-cli": "^3.2.1",
     "webpack-dev-server": "^3.1.14"
-  }
+  },
+  "keywords": [
+    "geojson",
+    "polygon",
+    "complex polygon",
+    "simple polygon",
+    "self-intersection"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rowanwins/shamos-hoey.git"
+  },
+  "homepage": "https://github.com/rowanwins/shamos-hoey"
 }
