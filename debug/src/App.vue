@@ -19,7 +19,7 @@ L.Icon.Default.mergeOptions({
   shadowUrl: markerShadow
 })
 
-const trouble = require('../../test/fixtures/poly.geojson')
+const trouble = require('../../test/fixtures/simple/MultiLine2.geojson')
 
 export default {
   name: 'App',
