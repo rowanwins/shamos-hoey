@@ -1,4 +1,6 @@
-dist/
+dist/shamosHoey.js
+dist/shamosHoey.min.js
+dist/shamosHoey.esm.js
 .DS_Store
 node_modules/
 npm-debug.log*
