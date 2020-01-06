@@ -25,7 +25,7 @@ Note: This modules also detects overlapping segments.
 
 
 ## Similar modules
-If you need to find the points of self-intersection I suggest using the [sweepline-intersections module](https://github.com/rowanwins/sweepline-intersections). The sweeline-intersections module is also smaller (4kb vs 12kb) and very fast for most use cases. It uses alot of the same logic although doesn't inlude a tree structure which makes us the major dependency for this library.
+If you need to find the points of self-intersection I suggest using the [sweepline-intersections module](https://github.com/rowanwins/sweepline-intersections). The sweeline-intersections module is also smaller (4kb vs 12kb) and very fast for most use cases. It uses alot of the same logic although doesn't inlude a tree structure which makes up the major dependency for this library.
 
 
 ## Benchmarks
