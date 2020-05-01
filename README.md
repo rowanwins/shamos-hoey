@@ -4,17 +4,19 @@ Can be used for
 - detecting if a geometry has self-intersections, or
 - if multiple geometries have segments which intersect
 
-## Install
+**Note:** If you need to find the points of intersection I suggest using the [sweepline-intersections module](https://github.com/rowanwins/sweepline-intersections).
+## Documentation
+
+### Install
 ````
 npm install shamos-hoey
 ````
-
-## Documentation
 
 ### Basic Use
 Valid inputs: Geojson `Feature` or `Geometry` including `Polygon`, `LineString`, `MultiPolygon`, `MultiLineString`, as well as `FeatureCollection`'s.
 
 Returns `true` if there are no intersections
+
 Returns `false` if there are intersections
 
 ````js
@@ -46,7 +48,6 @@ This library also provide a class-based approach which is helpful if you need to
         // check if those two features intersect
         sh.noIntersections()
     })
-
 ````
 
 #### API
@@ -61,7 +62,7 @@ This library also provide a class-based approach which is helpful if you need to
 
 
 ## Similar modules
-If you need to find the points of self-intersection I suggest using the [sweepline-intersections module](https://github.com/rowanwins/sweepline-intersections). The sweeline-intersections module is also smaller (4kb vs 12kb) and very fast for most use cases. It uses alot of the same logic although doesn't inlude a tree structure which makes us the major dependency for this library.
+If you need to find the points of self-intersection I suggest using the [sweepline-intersections module](https://github.com/rowanwins/sweepline-intersections). The sweeline-intersections module is also smaller (4kb vs 12kb) and very fast for most use cases. It uses alot of the same logic although doesn't inlude a tree structure which makes up the major dependency for this library.
 
 
 ## Benchmarks
@@ -72,8 +73,9 @@ Detecting an intersection in a polygon with roughly 700 vertices. Note that the 
 // SweeplineIntersections x 2,124 ops/sec ±0.70% (92 runs sampled)
 // GPSI x 36.85 ops/sec ±1.06% (64 runs sampled)
 // - Fastest is ShamosHoey
-
-
+````
+For the class-based module vs the basic use on a very large geojson file (approx. 14,000 vertices)
+````
 // Class-based reuse vs Basic
 // ShamosHoey x 1,011 ops/sec ±8.12% (89 runs sampled)
 // ShamosHoeyClass x 2,066 ops/sec ±0.60% (93 runs sampled)
