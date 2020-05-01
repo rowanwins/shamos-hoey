@@ -1,5 +1,5 @@
 import test from 'ava';
-import {fillEventQueue} from '../src/fillQueue'
+import fillEventQueue from '../src/fillQueue'
 import EventQueue from '../src/EventQueue'
 const loadJsonFile = require('load-json-file')
 const path = require('path')

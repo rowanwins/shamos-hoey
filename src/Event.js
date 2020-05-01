@@ -11,11 +11,11 @@ export default class Event {
         this.segment = null
     }
 
-    isOtherEndOfSegment(eventToCheck) {
+    isOtherEndOfSegment (eventToCheck) {
         return this === eventToCheck.otherEvent
     }
 
-    isSamePoint(eventToCheck) {
+    isSamePoint (eventToCheck) {
         return this.x === eventToCheck.x && this.y === eventToCheck.y
     }
 
@@ -26,7 +26,7 @@ export default class Event {
     }
 
     isAbove (p) {
-        return !this.isBelow(p);
+        return !this.isBelow(p)
     }
 }
 
