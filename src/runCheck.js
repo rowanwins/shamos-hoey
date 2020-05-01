@@ -2,10 +2,10 @@ import Sweepline from './Sweepline'
 // import {debugEventAndSegments, debugEventAndSegment} from './debug'
 
 export default function runCheck (eventQueue) {
-    const sweepLine = new Sweepline();
+    const sweepLine = new Sweepline()
     let currentSegment = null
     while (eventQueue.length) {
-        const event = eventQueue.pop();
+        const event = eventQueue.pop()
         // debugEventAndSegments(event, sweepLine)
 
         if (event.isLeftEndpoint) {

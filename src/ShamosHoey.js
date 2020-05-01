@@ -12,7 +12,7 @@ export default class ShamosHoey {
         if (alternateEventQueue !== undefined) {
             const newQueue = new EventQueue()
             for (let i = 0; i < alternateEventQueue.length; i++) {
-                newQueue.push(alternateEventQueue.data[i]);
+                newQueue.push(alternateEventQueue.data[i])
             }
             this._eventQueue = newQueue
         }
@@ -22,7 +22,7 @@ export default class ShamosHoey {
     cloneEventQueue () {
         const newQueue = new EventQueue()
         for (let i = 0; i < this._eventQueue.length; i++) {
-            newQueue.push(this._eventQueue.data[i]);
+            newQueue.push(this._eventQueue.data[i])
         }
         return newQueue
     }

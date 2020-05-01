@@ -26,14 +26,14 @@ function processFeature (featureOrGeometry, eventQueue) {
                 const e1 = new Event(coords[i][ii][iii])
                 const e2 = new Event(coords[i][ii][iii + 1])
 
-                e1.otherEvent = e2;
-                e2.otherEvent = e1;
+                e1.otherEvent = e2
+                e2.otherEvent = e1
 
                 if (checkWhichEventIsLeft(e1, e2) > 0) {
-                    e2.isLeftEndpoint = true;
+                    e2.isLeftEndpoint = true
                     e1.isLeftEndpoint = false
                 } else {
-                    e1.isLeftEndpoint = true;
+                    e1.isLeftEndpoint = true
                     e2.isLeftEndpoint = false
                 }
                 eventQueue.push(e1)
