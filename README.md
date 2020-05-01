@@ -1,10 +1,10 @@
 # shamos-hoey
-A fast module for checking for segment intersections using the Shamos-Hoey algorithm. 
+A fast module for checking if segment intersections exist using the Shamos-Hoey algorithm. 
 Can be used for 
 - detecting if a geometry has self-intersections, or
 - if multiple geometries have segments which intersect
 
-**Note:** If you need to find the points of intersection I suggest using the [sweepline-intersections module](https://github.com/rowanwins/sweepline-intersections).
+**Note:** This module only detects if an intersection does exist, not where, or how many. If you need to find the points of intersection I suggest using the [sweepline-intersections module](https://github.com/rowanwins/sweepline-intersections).
 ## Documentation
 
 ### Install
