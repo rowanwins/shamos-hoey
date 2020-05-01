@@ -2,8 +2,8 @@ import resolve from 'rollup-plugin-node-resolve'
 import {terser} from 'rollup-plugin-terser'
 import strip from 'rollup-plugin-strip'
 
-const output = (file, format, plugins) => ({
-    input: './src/main.js',
+const output = (input, file, format, plugins) => ({
+    input,
     output: {
         name: 'shamosHoey',
         file,
@@ -14,23 +14,37 @@ const output = (file, format, plugins) => ({
 })
 
 export default [
-    output('./dist/shamosHoey.js', 'umd', [
+    output('./src/main.js', './dist/shamosHoey.js', 'umd', [
         strip({
             functions: ['debugEventAndSegment', 'debugEventAndSegments']
         }),
         resolve()
     ]),
-    output('./dist/shamosHoey.min.js', 'umd', [
+    output('./src/main.js', './dist/shamosHoey.min.js', 'umd', [
         strip({
             functions: ['debugEventAndSegment', 'debugEventAndSegments']
         }),
         resolve(),
         terser()
     ]),
-    output('./dist/shamosHoey.esm.js', 'esm', [
+    output('./src/main.js', './dist/shamosHoey.esm.js', 'esm', [
         strip({
             functions: ['debugEventAndSegment', 'debugEventAndSegments']
         }),
         resolve()
+    ]),
+    output('./src/ShamosHoey.js', './dist/ShamosHoeyClass.js', 'umd', [
+        strip({
+            functions: ['debugEventAndSegment', 'debugEventAndSegments']
+        }),
+        resolve(),
+        terser()
+    ]),
+    output('./src/ShamosHoey.js', './dist/ShamosHoeyClass.esm.js', 'esm', [
+        strip({
+            functions: ['debugEventAndSegment', 'debugEventAndSegments']
+        }),
+        resolve(),
+        terser()
     ])
 ]
