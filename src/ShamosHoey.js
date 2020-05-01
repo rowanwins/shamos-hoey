@@ -1,7 +1,6 @@
 import EventQueue from './EventQueue'
-import Sweepline from './Sweepline'
-
-import {fillEventQueue} from './fillQueue'
+import fillEventQueue from './fillQueue'
+import runCheck from './runCheck'
 
 export default class ShamosHoey {
 
@@ -28,21 +27,7 @@ export default class ShamosHoey {
         return newQueue
     }
 
-    isSimple () {
-        const sweepLine = new Sweepline();
-        let currentSegment = null
-        while (this._eventQueue.length) {
-            const event = this._eventQueue.pop();
-            if (event.isLeftEndpoint) {
-                currentSegment = sweepLine.addSegment(event)
-                if (sweepLine.testIntersect(currentSegment, currentSegment.segmentAbove)) return false
-                if (sweepLine.testIntersect(currentSegment, currentSegment.segmentBelow)) return false
-            } else {
-                if (!event.segment) continue
-                if (sweepLine.testIntersect(event.segment.segmentAbove, event.segment.segmentBelow)) return false
-                sweepLine.removeSegmentFromSweepline(event.segment)
-            }
-        }
-        return true
+    noIntersections () {
+        return runCheck(this._eventQueue)
     }
 }

@@ -1,5 +1,8 @@
 # shamos-hoey
-A small and fast module for checking for if polygons or linestrings have self-intersections using the Shamos-Hoey algorithm.
+A fast module for checking for segment intersections using the Shamos-Hoey algorithm. 
+Can be used for 
+- detecting if a geometry has self-intersections, or
+- if multiple geometries have segments which intersect
 
 ## Install
 ````
@@ -9,40 +12,39 @@ npm install shamos-hoey
 ## Documentation
 
 ### Basic Use
-Valid inputs: Geojson features or geometries inc `Polygon`, `LineString`, `MultiPolygon` & `MultiLineString`.
+Valid inputs: Geojson `Feature` or `Geometry` including `Polygon`, `LineString`, `MultiPolygon`, `MultiLineString`, as well as `FeatureCollection`'s.
 
-Returns `true` if the polygon is simple (doesn't have self-intersections).
-Returns `false` if the polygon is complex (has self-intersections).
+Returns `true` if there are no intersections
+Returns `false` if there are intersections
 
 ````js
-    const isSimple = require('shamos-hoey')
+    const noIntersections = require('shamos-hoey')
 
     const box = {type: 'Polygon', coordinates: [[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]]}
-    isSimple(box)
+    noIntersections(box)
     // => true
 ````
 
 ### Complex Use
-This library also provide a class-based approach which is helpful if you need to run multiple checks against a single geometry. For example if you had a single geometry which you wanted to check against a number of other geometries you could use this approach to save the state of the initial event queue.
+This library also provide a class-based approach which is helpful if you need to check multiple geometries against a single geometry. This allows you to save the state of the initial event queue with the primary geometry.
 
 ````js
     import ShamosHoeyClass from 'shamos-hoey/dist/ShamosHoeyClass'
 
     // create the base instance
     const sh = new ShamosHoeyClass()
-    // populate the event queue with your static data
+    // populate the event queue with your primary geometry
     sh.addData(largeGeoJson)
     // clone the event queue in the original state so you can reuse it
     const origQueue = sh.cloneEventQueue()
 
-    // now you can iterate through some other set of features and 
-    // not have to populate the complete queue multiple times
+    // now you can iterate through some other set of features saving
+    // the overhead of having to populate the complete queue multiple times
     someOtherFeatureCollection.features.forEach(feature => {
         // add another feature to test against your original data
         sh.addData(feature, origQueue)
         // check if those two features intersect
-        sh.isSimple()
-        // => true
+        sh.noIntersections()
     })
 
 ````
@@ -54,7 +56,7 @@ This library also provide a class-based approach which is helpful if you need to
 
 `.cloneEventQueue()` - clones the state of the existing event queue that's been populated with geojson. Returns a queue that you can pass to the `addData` method
 
-`.isSimple()` - Checks if there are any segment intersections against the event queue. Returns `true` or `false`
+`.noIntersections()` - Checks for segment intersections. Returns `true` if there are no segment intersections or `false` if there are intersections.
 
 
 
@@ -77,6 +79,7 @@ Detecting an intersection in a polygon with roughly 700 vertices. Note that the 
 // ShamosHoeyClass x 2,066 ops/sec ±0.60% (93 runs sampled)
 // - Fastest is ShamosHoeyClass
 ````
+
 
 ## Further Reading
 [Original Paper](https://github.com/rowanwins/shamos-hoey/blob/master/ShamosHoey.pdf)

@@ -1,8 +1,19 @@
 import Event from './Event'
 import {checkWhichEventIsLeft} from './compareEvents'
 
-export function fillEventQueue (geojson, eventQueue) {
-    const geom = geojson.type === 'Feature' ? geojson.geometry : geojson
+export default function fillEventQueue (geojson, eventQueue) {
+    if (geojson.type === 'FeatureCollection') {
+        const features = geojson.features
+        for (let i = 0; i < features.length; i++) {
+            processFeature(features[i], eventQueue)
+        }
+    } else {
+        processFeature(geojson, eventQueue)
+    }
+}
+
+function processFeature (featureOrGeometry, eventQueue) {
+    const geom = featureOrGeometry.type === 'Feature' ? featureOrGeometry.geometry : featureOrGeometry
 
     let coords = geom.coordinates
     // standardise the input
